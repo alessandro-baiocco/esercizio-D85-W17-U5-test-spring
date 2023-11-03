@@ -1,4 +1,4 @@
-package application.U5D5.userEntities;
+package application.U5D5.entities;
 
 
 import jakarta.persistence.Entity;
@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Entity
 @ToString
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue

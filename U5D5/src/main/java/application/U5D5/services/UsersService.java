@@ -3,12 +3,11 @@ package application.U5D5.services;
 import application.U5D5.exceptions.ItemNotFoundException;
 import application.U5D5.interfaces.UserServiceInterface;
 import application.U5D5.repositories.UserRepo;
-import application.U5D5.userEntities.User;
+import application.U5D5.entities.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 @Slf4j
 @Service
 public class UsersService implements UserServiceInterface {

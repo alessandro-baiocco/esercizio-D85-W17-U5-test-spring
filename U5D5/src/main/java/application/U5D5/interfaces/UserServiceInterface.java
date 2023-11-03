@@ -1,8 +1,6 @@
 package application.U5D5.interfaces;
 
-import application.U5D5.userEntities.User;
-
-import java.util.List;
+import application.U5D5.entities.User;
 
 public interface UserServiceInterface {
     public void save(User user);

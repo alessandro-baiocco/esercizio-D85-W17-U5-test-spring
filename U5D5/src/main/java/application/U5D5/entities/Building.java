@@ -1,16 +1,17 @@
-package application.U5D5.buildEntities;
+package application.U5D5.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
-import org.springframework.context.annotation.Primary;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Getter
 @Entity
+@NoArgsConstructor
 public class Building {
     @Id
     @GeneratedValue

@@ -1,15 +1,14 @@
-package application.U5D5.userEntities;
+package application.U5D5.entities;
 
-import application.U5D5.buildEntities.Station;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Locale;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Reservation {
     @Id
     @GeneratedValue
