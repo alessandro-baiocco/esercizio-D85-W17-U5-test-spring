@@ -34,14 +34,14 @@ public class StationService implements StationServiceInterface {
         found.setFree(station.isFree());
         found.setReservations(station.getReservations());
         stationRepo.save(found);
-        log.info("User con id " + station.getId() + " aggiornato con successo!");
+        log.info("Postazione con id " + station.getId() + " aggiornata con successo!");
     }
 
     @Override
     public void findByIdAndDelete(int id) throws ItemNotFoundException {
         Station found = this.findById(id);
         stationRepo.delete(found);
-        log.info("User con id " + id + " eliminato con successo!");
+        log.info("Postazione con id " + id + " eliminata con successo!");
     }
 
 

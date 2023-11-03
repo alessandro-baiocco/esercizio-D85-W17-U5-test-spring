@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Slf4j
 @Service
 public class ReservationsService implements ReservationServiceInterface {
@@ -15,8 +17,11 @@ public class ReservationsService implements ReservationServiceInterface {
     private ReservationRepo reservRepo;
 
 
+
+
     @Override
     public void save(Reservation reser) {
+        Optional<Reservation> found = reservRepo.findByStationAndDate(reser.getStation() , reser.getDate());
 
     }
 
