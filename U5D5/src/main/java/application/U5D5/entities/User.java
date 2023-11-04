@@ -8,6 +8,9 @@ import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Type;
 
 import java.util.List;
 
@@ -26,6 +29,7 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     @ToString.Exclude
+    @Cascade(CascadeType.REMOVE)
     private List<Reservation> listOfReservations;
 
     public void setName(String name) {

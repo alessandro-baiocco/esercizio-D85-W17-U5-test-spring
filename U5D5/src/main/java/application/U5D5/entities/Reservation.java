@@ -21,6 +21,15 @@ public class Reservation {
     @JoinColumn(name = "station_id", nullable = false)
     private Station station;
 
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 
+    public void setStation(Station station) {
+        this.station = station;
+    }
 }

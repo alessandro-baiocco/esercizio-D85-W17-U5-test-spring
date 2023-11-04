@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import java.util.List;
 
@@ -27,6 +29,7 @@ public class Station {
     private int maxGroupSize;
     @OneToMany
     @ToString.Exclude
+    @Cascade(CascadeType.REMOVE)
     private List<Reservation> reservations;
 
     public void setDescription(String description) {
