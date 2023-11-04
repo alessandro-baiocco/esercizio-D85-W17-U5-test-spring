@@ -43,4 +43,8 @@ public class Building {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public List<Station> getStations() {
+        return stations;
+    }
 }
