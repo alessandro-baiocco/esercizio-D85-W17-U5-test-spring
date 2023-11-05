@@ -12,25 +12,27 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 @Slf4j
 @Service
 public class BuildingsService implements BuildingServiceInterface {
+    Random rnd = new Random();
 
     @Autowired
-    private BuildingRepo buildRepo;
+    private BuildingRepo buildingRepo;
 
     @Override
     public Building findById(int id) throws ItemNotFoundException {
-            return buildRepo.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
+            return buildingRepo.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
 
     }
 
 
     @Override
     public void save(Building build) {
-            buildRepo.save(build);
+            buildingRepo.save(build);
             System.out.println("costruzione salvata con successo");
 
     }
@@ -42,7 +44,7 @@ public class BuildingsService implements BuildingServiceInterface {
         found.setAddress(build.getAddress());
         found.setStations(build.getStations());
         found.setName(build.getName());
-        buildRepo.save(found);
+        buildingRepo.save(found);
         log.info("prenotazione con id " + build.getId() + " aggiornata con successo!");
 
     }
@@ -50,12 +52,12 @@ public class BuildingsService implements BuildingServiceInterface {
     @Override
     public void findByIdAndDelete(int id) {
         Building found = this.findById(id);
-        buildRepo.delete(found);
+        buildingRepo.delete(found);
         log.info("prenotazione con id " + id + " eliminata con successo!");
     }
 
     public List<Station> findSearchedStationsByCity(String city , StationType type){
-        List<Building> buildList = buildRepo.findByCity(city);
+        List<Building> buildList = buildingRepo.findByCity(city);
         if (!buildList.isEmpty()){
             List<Station> stationList = new ArrayList<>();
             for (Building building : buildList) {
@@ -73,6 +75,10 @@ public class BuildingsService implements BuildingServiceInterface {
             return null;
         }
 
+    }
+
+    public Building getRandomBuild(){
+       return buildingRepo.findAllBuild().get(rnd.nextInt(0 , buildingRepo.findAllBuild().size() - 1));
     }
 
 

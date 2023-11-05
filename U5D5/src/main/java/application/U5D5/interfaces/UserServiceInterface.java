@@ -12,6 +12,9 @@ public interface UserServiceInterface {
     public User findById(int id);
 
 
+    public User getRandomUser();
+
+
 
 }
 

@@ -1,21 +1,21 @@
 package application.U5D5.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.github.javafaker.Faker;
+import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import java.util.List;
+import java.util.Locale;
 
-@Getter
+
 @Entity
+@Getter
 @NoArgsConstructor
 @ToString
+@Builder(builderClassName = "buildBuilder")
+@AllArgsConstructor
 public class Building {
     @Id
     @GeneratedValue
@@ -23,7 +23,7 @@ public class Building {
     private String name;
     private String city;
     private String address;
-    @OneToMany(mappedBy = "building")
+    @OneToMany(mappedBy = "building",fetch = FetchType.EAGER)
     @ToString.Exclude
     @Cascade(CascadeType.REMOVE)
     private List<Station> stations;
@@ -44,7 +44,14 @@ public class Building {
         this.address = address;
     }
 
-    public List<Station> getStations() {
-        return stations;
+    public static class buildBuilder{
+        private Faker faker = new Faker(Locale.ITALY);
+        private String name = faker.elderScrolls().creature();
+        private String city = faker.elderScrolls().city();
+        private String address = faker.address().streetAddress();
+        private List<Station> stations = null;
+
     }
+
+
 }

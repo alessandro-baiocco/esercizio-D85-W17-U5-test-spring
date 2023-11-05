@@ -8,9 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 @Slf4j
 @Service
 public class UsersService implements UserServiceInterface {
+    Random rnd = new Random();
 
     @Autowired
     private UserRepo userRepo;
@@ -27,6 +30,10 @@ public class UsersService implements UserServiceInterface {
        return userRepo.findById(id).orElseThrow(() -> new  ItemNotFoundException(id));
     }
 
+    @Override
+    public User getRandomUser() {
+     return userRepo.findAllUser().get(rnd.nextInt(0 , userRepo.findAllUser().size() - 1));
+    }
 
 
     @Override

@@ -1,23 +1,22 @@
 package application.U5D5.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.github.javafaker.Faker;
+import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Type;
 
 import java.util.List;
+import java.util.Locale;
 
 @Getter
 @Entity
 @ToString
 @NoArgsConstructor
+@Builder(builderClassName = "userBuilder")
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue
@@ -27,7 +26,7 @@ public class User {
     private String email;
     private String surname;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     @ToString.Exclude
     @Cascade(CascadeType.REMOVE)
     private List<Reservation> listOfReservations;
@@ -53,6 +52,20 @@ public class User {
     }
 
 
+    public static class userBuilder{
+        private Faker faker = new Faker(Locale.ITALY);
+        private String name = faker.name().firstName();
+        private String lastName = faker.name().lastName();
+        private String email = faker.internet().emailAddress();
+        private String surname = faker.elderScrolls().lastName();
 
 
+    }
+
+    public User(String name, String lastName, String email, String surname) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.surname = surname;
+    }
 }

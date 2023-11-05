@@ -30,6 +30,7 @@ public class ReservationsService implements ReservationServiceInterface {
         Optional<Reservation> userIsFree = reservRepo.findByUserAndDate(reser.getUser() , reser.getDate());
         if(found.isEmpty() && userIsFree.isEmpty()){
             reservRepo.save(reser);
+            reser.getUser().getListOfReservations().add(reser);
             System.out.println("prenotazione salvata con successo");
         }else if(found.isPresent()) {
             System.err.println("c'e gia una prenotazione per quel giorno in quel luogo");
